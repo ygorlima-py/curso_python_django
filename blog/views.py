@@ -7,7 +7,7 @@ import json
 # Create your views here.
 
 # Página Home
-def home(request):
+def blog(request):
     posts = requests.get('https://jsonplaceholder.typicode.com/posts')
     posts_json = posts.json()
 
@@ -36,8 +36,24 @@ def exemplo(request):
         context,
     )
 
+def post(request, id):
+    posts = requests.get('https://jsonplaceholder.typicode.com/posts')
+    posts_json = posts.json()
+
+    context = dict(
+        # text='Meu Blog',
+        posts=posts_json,
+    )
+
+    return render(
+        request, 
+        'blog/index.html',
+        context=context,
+    )
+
 
 if __name__ == "__main__":
     result = requests.get('https://jsonplaceholder.typicode.com/posts')
 
     print(result.json())
+
