@@ -1,0 +1,10 @@
+.env
+
+# cash
+__pychase__/
+*.py[cod]
+*$py.class
+
+
+venv/
+static_files
