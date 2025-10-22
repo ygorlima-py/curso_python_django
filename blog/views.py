@@ -1,4 +1,6 @@
 from django.shortcuts import render
+import requests 
+import json
 
 
 
@@ -6,17 +8,18 @@ from django.shortcuts import render
 
 # Página Home
 def home(request):
-    text = 'Aqui é o blog e estou usando adição de texto por contexto'
-    title = 'Blog'
+    posts = requests.get('https://jsonplaceholder.typicode.com/posts')
+    posts_json = posts.json()
+
     context = dict(
-        text=text,
-        title=title,
+        text='Meu Blog',
+        posts=posts_json,
     )
 
     return render(
         request, 
         'blog/index.html',
-        context
+        context=context,
     )
 
 # Pagina Exemplo
@@ -32,3 +35,9 @@ def exemplo(request):
         'blog/exemplo.html',
         context,
     )
+
+
+if __name__ == "__main__":
+    result = requests.get('https://jsonplaceholder.typicode.com/posts')
+
+    print(result.json())
