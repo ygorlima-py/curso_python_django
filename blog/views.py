@@ -12,7 +12,7 @@ def home(request):
     posts_json = posts.json()
 
     context = dict(
-        text='Meu Blog',
+        # text='Meu Blog',
         posts=posts_json,
     )
 
